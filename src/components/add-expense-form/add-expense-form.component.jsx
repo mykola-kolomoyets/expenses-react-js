@@ -9,6 +9,8 @@ const AddExpenseForm = (props) => {
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
 
+  const [isCreationActive, setIsCreationActive] = useState(false);
+
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
@@ -20,6 +22,18 @@ const AddExpenseForm = (props) => {
   const handleDateChange = (event) => {
     setDate(event.target.value);
   };
+
+  const toggleActive = () => {
+    setIsCreationActive(!isCreationActive);
+  };
+
+  if (!isCreationActive) {
+    return (
+      <div className="new-expense">
+        <button onClick={toggleActive}>Add New Expense</button>
+      </div>
+    );
+  }
 
   return (
     <div className="new-expense">
@@ -54,6 +68,7 @@ const AddExpenseForm = (props) => {
           />
         </div>
         <div className="new-expense__actions">
+          <button onClick={toggleActive}>Cancel</button>
           <button type="submit">Add Expense</button>
         </div>
       </form>

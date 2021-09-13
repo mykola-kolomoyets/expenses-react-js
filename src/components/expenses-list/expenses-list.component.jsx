@@ -11,7 +11,7 @@ const ExpensesList = (props) => {
   });
 
   if (!filteredExpenses.length) {
-    return <p>No expenses found</p>;
+    return <h2 className="expenses-list__fallback">No expenses found</h2>;
   }
 
   const listItems = filteredExpenses.map(({ title, amount, date, id }) => {
