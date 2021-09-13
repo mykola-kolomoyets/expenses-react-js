@@ -4,3 +4,7 @@ export * from "./expense-item";
 export * from "./expenses-list";
 export * from "./add-expense-form";
 export * from "./expenses-filter";
+export * from "./chart";
+export * from "./chart-bar";
+export * from "./expenses-data";
+export * from "./expenses-chart";

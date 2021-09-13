@@ -5,6 +5,8 @@ import {
   AddExpenseForm,
   ExpensesFilter,
   Card,
+  Chart,
+  ExpensesData,
 } from "./components";
 
 const App = () => {
@@ -36,7 +38,6 @@ const App = () => {
   ];
 
   const [expenses, setExpenses] = useState(initialValues);
-  const [filteredYear, setFilteredYear] = useState("all");
 
   const handleSubmit = ({ title, amount, date }) => {
     const newExpenseDate = new Date(date);
@@ -51,20 +52,11 @@ const App = () => {
     ]);
   };
 
-  const handleFilterChange = (year) => {
-    setFilteredYear(year);
-  };
   return (
     <div>
       <h2>Let's get started!</h2>
       <AddExpenseForm onSubmit={handleSubmit} />
-      <Card className="expenses">
-        <ExpensesFilter
-          selected={filteredYear}
-          onFilterChange={handleFilterChange}
-        />
-        <ExpensesList expenses={expenses} filteredYear={filteredYear} />
-      </Card>
+      <ExpensesData expenses={expenses} />
     </div>
   );
 };
