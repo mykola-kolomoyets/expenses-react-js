@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import { ExpensesList, AddExpenseForm } from "./components";
+import {
+  ExpensesList,
+  AddExpenseForm,
+  ExpensesFilter,
+  Card,
+} from "./components";
 
 const App = () => {
   const initialValues = [
@@ -31,29 +36,35 @@ const App = () => {
   ];
 
   const [expenses, setExpenses] = useState(initialValues);
+  const [filteredYear, setFilteredYear] = useState("all");
 
   const handleSubmit = ({ title, amount, date }) => {
     const newExpenseDate = new Date(date);
     setExpenses([
-      ...expenses,
       {
         title,
         amount,
         date: newExpenseDate,
         id: expenses.length,
       },
+      ...expenses,
     ]);
   };
 
-  useEffect(() => {
-    console.log(expenses);
-  }, [expenses]);
-
+  const handleFilterChange = (year) => {
+    setFilteredYear(year);
+  };
   return (
     <div>
       <h2>Let's get started!</h2>
       <AddExpenseForm onSubmit={handleSubmit} />
-      <ExpensesList expenses={expenses} />
+      <Card className="expenses">
+        <ExpensesFilter
+          selected={filteredYear}
+          onFilterChange={handleFilterChange}
+        />
+        <ExpensesList expenses={expenses} filteredYear={filteredYear} />
+      </Card>
     </div>
   );
 };

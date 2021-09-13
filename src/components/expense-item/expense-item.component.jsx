@@ -20,9 +20,7 @@ const ExpenseItem = (props) => {
     <Card className="expense-item">
       <ExpenseDate month={month} year={year} day={day} />
       <div className="expense-item__description">
-        <h2>
-          {title}-{id}
-        </h2>
+        <h2>{title}</h2>
         <div className="expense-item__price">${amount}</div>
       </div>
     </Card>

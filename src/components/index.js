@@ -3,3 +3,4 @@ export * from "./expense-date";
 export * from "./expense-item";
 export * from "./expenses-list";
 export * from "./add-expense-form";
+export * from "./expenses-filter";

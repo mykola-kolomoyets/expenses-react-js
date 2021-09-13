@@ -1,12 +1,20 @@
-import { Card } from "../card";
 import { ExpenseItem } from "../expense-item";
 
 import "./expenses-list.styles.css";
 
 const ExpensesList = (props) => {
-  const { expenses } = props;
+  const { expenses, filteredYear } = props;
 
-  const listItems = expenses.map(({ title, amount, date, id }, index) => {
+  const filteredExpenses = expenses.filter((el) => {
+    if (filteredYear === "all") return el;
+    if (filteredYear != null) return el.date.getFullYear() === +filteredYear;
+  });
+
+  if (!filteredExpenses.length) {
+    return <p>No expenses found</p>;
+  }
+
+  const listItems = filteredExpenses.map(({ title, amount, date, id }) => {
     return (
       <ExpenseItem
         id={id}
@@ -19,7 +27,7 @@ const ExpensesList = (props) => {
     );
   });
 
-  return <Card className="expenses">{listItems}</Card>;
+  return <ul className="expenses-list">{listItems}</ul>;
 };
 
 export { ExpensesList };
